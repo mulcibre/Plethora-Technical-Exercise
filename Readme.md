@@ -47,7 +47,7 @@ Examples
 
 Three example JSON files are provided for you to test your code:
 
-  (1) Rectangle.json - a simple 3in x 5in rectangle.
+  (1) [Rectangle.json](https://gist.github.com/o8ruza8o/1e066a602fb0649b668c#file-rectangle-json) - a simple 3in x 5in rectangle.
   
   Your program should output: 14.10 dollars
   
