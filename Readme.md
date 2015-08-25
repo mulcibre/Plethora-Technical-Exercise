@@ -3,7 +3,7 @@ Plethora Technical Exercise
 
 This exercise may be done in an imperative object orientated language of your choosing. The aim of this exercise is to test your ability to write clean, well structured code. 
  
-Imagine you are given the task of automating the quoting for parts to be made with a 2 axis laser cutting machine. When a user submits their 3D part, it automatically gets converted to a 2D object which represents the profile of the extrusion. 
+Imagine you are given the task of automating the quoting for parts to be made with a 2 axis laser cutting machine. When a user submits their design for laser cutting, it automatically gets converted to a 2D object which represents the profile of the design's extrusion. 
 
 Profile Representation
 ---
@@ -38,7 +38,9 @@ Task
     
     - Machine Time Cost: $0.07/s
   
-  (3) Include a brief description describes how to use your code and what you would do to improve it if you had more time. Also make sure to reference any external code used.
+  (3) Keep all of your progress in a git repository and when you are done, push your repository and send an email letting me know you're done.
+  
+  (4) Include a brief description describes how to use your code and what you would do to improve it if you had more time. Please, make sure to reference any external code used.
 
 Examples
 ---
