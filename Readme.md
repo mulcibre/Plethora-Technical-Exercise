@@ -30,20 +30,21 @@ Task
   
   (2) Write a program that takes a profile and produces a quote. Assume:
   
-    ○ Padding: 0.1in.
+    - Padding: 0.1in.
     
-    ○ Material Cost: $0.75/in^2
+    - Material Cost: $0.75/in^2
     
-    ○ Maximal laser cutter speed: 0.5 in/s
+    - Maximal laser cutter speed: 0.5 in/s
     
-    ○ Machine Time Cost: $0.07/s
-    
+    - Machine Time Cost: $0.07/s
+  
   (3) Include a brief description describes how to use your code and what you would do to improve it if you had more time. Also make sure to reference any external code used.
 
 Examples
 ---
 
 Three example JSON files are provided for you to test your code:
+
   (1) Rectangle.json - a simple 3in x 5in rectangle.
   Your program should output: 14.10 dollars
   
