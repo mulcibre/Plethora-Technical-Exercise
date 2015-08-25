@@ -30,7 +30,7 @@ Task
   
   (2) Write a program that takes a profile and produces a quote. Assume:
   
-    - Padding: 0.1in.
+    - Padding: 0.1in
     
     - Material Cost: $0.75/in^2
     
@@ -46,10 +46,13 @@ Examples
 Three example JSON files are provided for you to test your code:
 
   (1) Rectangle.json - a simple 3in x 5in rectangle.
+  
   Your program should output: 14.10 dollars
   
   (2) ExtrudeCircularArc.json - a 2in x 1in rectangle with semicircle added onto one of the 1in sides.
+  
   Your program should output: 4.47 dollars
   
   (3) CutCircularArc.json - a 2in x 1in rectangle with semicircle cut into one of the 1in sides.
+  
   Your program should output: 4.06 dollars
