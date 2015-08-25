@@ -8,8 +8,8 @@ Imagine you are given the task of automating the quoting for parts to be made wi
 Profile Representation
 ---
 
-A profile contains a set of *edges*, each of which derive from a type of curve. Edges adjoin to one another at *vertices* so that each edge has one or two vertex endpoints. Each edge and vertex element is keyed by a unique integer, *id*. 
+A profile contains a set of *edges*, each of which derive from a type of curve. Edges adjoin to one another at *vertices* so that each edge has one or two vertex endpoints. Each edge and vertex element is keyed by a unique integer, *id*. A profile is stored in a JSON file that is organized like Schema.json below.
  
-We will consider two types of curve in this exercise, straight line segments and circular arcs. While a line segment is completely defined via its vertices, circular arcs contain the additional ​ Center ​ and ​ ClockwiseFrom ​ fields. The ​ ClockwiseFrom field ​ references the vertex from which the circular arc may be drawn clockwise until it reaches the other vertex for that edge.
+We will consider two types of curve in this exercise, straight line segments and circular arcs. While a line segment is completely defined via its vertices, circular arcs contain the additional *Center* and *ClockwiseFrom* fields. The *ClockwiseFrom* field references the vertex from which the circular arc may be drawn clockwise until it reaches the other vertex for that edge.
  
 All units are in inches. 
