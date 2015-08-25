@@ -55,6 +55,6 @@ Three example JSON files are provided for you to test your code:
   
   Your program should output: 4.47 dollars
   
-  (3) CutCircularArc.json - a 2in x 1in rectangle with semicircle cut into one of the 1in sides.
+  (3) [CutCircularArc.json](https://gist.github.com/o8ruza8o/1e066a602fb0649b668c#file-cutcirculararc-json) - a 2in x 1in rectangle with semicircle cut into one of the 1in sides.
   
   Your program should output: 4.06 dollars
