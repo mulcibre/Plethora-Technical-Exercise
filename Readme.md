@@ -27,11 +27,17 @@ Task
 ---
 
   (1) Write code to deserialize extrusion profiles so that it can be represented in memory
+  
   (2) Write a program that takes a profile and produces a quote. Assume:
+  
     ○ Padding: 0.1in.
+    
     ○ Material Cost: $0.75/in^2
+    
     ○ Maximal laser cutter speed: 0.5 in/s
+    
     ○ Machine Time Cost: $0.07/s
+    
   (3) Include a brief description describes how to use your code and what you would do to improve it if you had more time. Also make sure to reference any external code used.
 
 Examples
