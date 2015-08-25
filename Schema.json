@@ -2,16 +2,16 @@
     "Edges": [
         id: {
             "Type": "LineSegment",
-            "Vertices": [id]
+            "Vertices": [id],
         },
         id: {
             "Type": "CircularArc",
             "Center": {
                 "X": double,
-                "Y": double
+                "Y": double,
             },
-            "ClockwiseFrom": id
-            "Vertices": [id]
+            "ClockwiseFrom": id,
+            "Vertices": [id],
         }
     ]
 
@@ -19,7 +19,7 @@
         id: {
             "Position": {
                 "X": double,
-                "Y": double
+                "Y": double,
             }
         }
     ]
