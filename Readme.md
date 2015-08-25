@@ -40,7 +40,7 @@ Task
   
   (3) Keep all of your progress in a git repository and when you are done, push your repository and send an email letting me know you're done.
   
-  (4) Include a brief description describes how to use your code and what you would do to improve it if you had more time. Please, make sure to reference any external code used.
+  (4) Include a brief description of how to use your code and what you would do to improve it if you had more time. Please, make sure to reference any external code used.
 
 Examples
 ---
@@ -51,7 +51,7 @@ Three example JSON files are provided for you to test your code:
   
   Your program should output: 14.10 dollars
   
-  (2) ExtrudeCircularArc.json - a 2in x 1in rectangle with semicircle added onto one of the 1in sides.
+  (2) [ExtrudeCircularArc.json](https://gist.github.com/o8ruza8o/1e066a602fb0649b668c#file-extrudecirculararc-json) - a 2in x 1in rectangle with semicircle added onto one of the 1in sides.
   
   Your program should output: 4.47 dollars
   
