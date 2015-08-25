@@ -12,4 +12,13 @@ A profile contains a set of *edges*, each of which derive from a type of curve. 
  
 We will consider two types of curve in this exercise, straight line segments and circular arcs. While a line segment is completely defined via its vertices, circular arcs contain the additional *Center* and *ClockwiseFrom* fields. The *ClockwiseFrom* field references the vertex from which the circular arc may be drawn clockwise until it reaches the other vertex for that edge.
  
-All units are in inches. 
+All units are in inches.
+
+Quoting
+---
+
+Main considerations that should be taken into account when quoting a part are material costs and machine cost.  
+ 
+Material costs are proportional to the area of stock used. Stock is pre cut into rectangular shape where, to consider kerf thickness from the laser, additional padding is added to the design bounds in each direction to define stock size. 
+ 
+Machine costs are proportional to the time laser spends cutting. It may be considered that the speed of the laser traveling in a straight line is the maximal laser cutting speed, *v_max*, while for a circular arc of nonzero radius, *R*, it is given by *v_max \times exp(-1/R)*
