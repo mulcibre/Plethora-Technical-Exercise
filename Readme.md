@@ -21,7 +21,7 @@ Main considerations that should be taken into account when quoting a part are ma
  
 Material costs are proportional to the area of stock used. Stock is pre cut into rectangular shape where, to consider kerf thickness from the laser, additional padding is added to the design bounds in each direction to define stock size. 
  
-Machine costs are proportional to the time laser spends cutting. It may be considered that the speed of the laser traveling in a straight line is the maximal laser cutting speed, *v_max*, while for a circular arc of nonzero radius, *R*, it is given by *v_max* * *exp(-1/R)*.
+Machine costs are proportional to the time laser spends cutting. It may be considered that the speed of the laser traveling in a straight line is the maximal laser cutting speed, *v_max*, while for a circular arc of nonzero radius, *R*, it is given by `v_max * exp(-1/R)`.
 
 Task
 ---
@@ -49,12 +49,12 @@ Three example JSON files are provided for you to test your code:
 
   (1) [Rectangle.json](https://gist.github.com/o8ruza8o/1e066a602fb0649b668c#file-rectangle-json) - a simple 3in x 5in rectangle.
   
-  Your program should output: 14.10 dollars
+  Your program should output: `14.10 dollars`
   
   (2) [ExtrudeCircularArc.json](https://gist.github.com/o8ruza8o/1e066a602fb0649b668c#file-extrudecirculararc-json) - a 2in x 1in rectangle with semicircle added onto one of the 1in sides.
   
-  Your program should output: 4.47 dollars
+  Your program should output: `4.47 dollars`
   
   (3) [CutCircularArc.json](https://gist.github.com/o8ruza8o/1e066a602fb0649b668c#file-cutcirculararc-json) - a 2in x 1in rectangle with semicircle cut into one of the 1in sides.
   
-  Your program should output: 4.06 dollars
+  Your program should output: `4.06 dollars`
