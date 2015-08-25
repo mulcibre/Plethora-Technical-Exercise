@@ -21,4 +21,4 @@ Main considerations that should be taken into account when quoting a part are ma
  
 Material costs are proportional to the area of stock used. Stock is pre cut into rectangular shape where, to consider kerf thickness from the laser, additional padding is added to the design bounds in each direction to define stock size. 
  
-Machine costs are proportional to the time laser spends cutting. It may be considered that the speed of the laser traveling in a straight line is the maximal laser cutting speed, *v_max*, while for a circular arc of nonzero radius, *R*, it is given by *v_max \times exp(-1/R)*
+Machine costs are proportional to the time laser spends cutting. It may be considered that the speed of the laser traveling in a straight line is the maximal laser cutting speed, *v_max*, while for a circular arc of nonzero radius, *R*, it is given by *v_max* * *exp(-1/R)*
