@@ -15,7 +15,7 @@
         }
     ]
 
-    "Vertices":[
+    "Vertices": [
         id: {
             "Position": {
                 "X": double,
