@@ -21,4 +21,28 @@ Main considerations that should be taken into account when quoting a part are ma
  
 Material costs are proportional to the area of stock used. Stock is pre cut into rectangular shape where, to consider kerf thickness from the laser, additional padding is added to the design bounds in each direction to define stock size. 
  
-Machine costs are proportional to the time laser spends cutting. It may be considered that the speed of the laser traveling in a straight line is the maximal laser cutting speed, *v_max*, while for a circular arc of nonzero radius, *R*, it is given by *v_max* * *exp(-1/R)*
+Machine costs are proportional to the time laser spends cutting. It may be considered that the speed of the laser traveling in a straight line is the maximal laser cutting speed, *v_max*, while for a circular arc of nonzero radius, *R*, it is given by *v_max* * *exp(-1/R)*.
+
+Task
+---
+
+  (1) Write code to deserialize extrusion profiles so that it can be represented in memory
+  (2) Write a program that takes a profile and produces a quote. Assume:
+    ○ Padding: 0.1in.
+    ○ Material Cost: $0.75/in^2
+    ○ Maximal laser cutter speed: 0.5 in/s
+    ○ Machine Time Cost: $0.07/s
+  (3) Include a brief description describes how to use your code and what you would do to improve it if you had more time. Also make sure to reference any external code used.
+
+Examples
+---
+
+Three example JSON files are provided for you to test your code:
+  (1) Rectangle.json - a simple 3in x 5in rectangle.
+  Your program should output: 14.10 dollars
+  
+  (2) ExtrudeCircularArc.json - a 2in x 1in rectangle with semicircle added onto one of the 1in sides.
+  Your program should output: 4.47 dollars
+  
+  (3) CutCircularArc.json - a 2in x 1in rectangle with semicircle cut into one of the 1in sides.
+  Your program should output: 4.06 dollars
