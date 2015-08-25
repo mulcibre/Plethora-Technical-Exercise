@@ -13,8 +13,7 @@
             "ClockwiseFrom": id,
             "Vertices": [id],
         }
-    ]
-
+    ],
     "Vertices": [
         id: {
             "Position": {
