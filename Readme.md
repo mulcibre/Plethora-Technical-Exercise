@@ -1,9 +1,9 @@
 Plethora Technical Exercise
 ===
 
-This exercise may be done in an imperative object orientated language of your choosing. The aim of this exercise is to test your ability to write clean, well structured code. 
+The aim of this exercise is to test your ability to write clean, well structured code. Feel free to choose any imperative object orientated language that is freely available. 
  
-Imagine you are given the task of automating the quoting for parts to be made with a 2 axis laser cutting machine. When a user submits their design for laser cutting, it automatically gets converted to a 2D object which represents the profile of the design's extrusion. 
+You are given the task of automating the quoting for parts to be made with a 2 axis laser cutting machine. When a user submits their design for laser cutting, it automatically gets converted to a 2D object which represents the profile of the design's extrusion. 
 
 Profile Representation
 ---
