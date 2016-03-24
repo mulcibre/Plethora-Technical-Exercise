@@ -8,7 +8,7 @@ Your task is to automate quoting for parts manufactured with a 2-axis laser cutt
 Profile Representation
 ---
 
-A profile contains a set of **edges**, each of which derive from a type of curve. Edges adjoin to one another at **vertices** so that each edge has one or two vertex endpoints. Each edge and vertex element is keyed by a unique integer, *id*. A profile is stored in a JSON file that is organized like [Schema.json](Schema.json).
+A profile contains a set of **edges**, each of which derive from a type of curve. Edges adjoin to one another at **vertices** so that each edge has one or two vertex endpoints. Each edge and vertex element is keyed by a unique integer, *id*. A profile is stored in a JSON file that is organized like [Schema.json](4bd6f29bedaec07b8e36/Schema.json).
  
 We will consider two types of curve in this exercise: straight line segments and circular arcs. While a line segment is completely defined via its vertices, circular arcs contain the additional *Center* and *ClockwiseFrom* fields. The *ClockwiseFrom* field references the vertex from which the circular arc may be drawn clockwise until it reaches the other vertex of that edge.
  
