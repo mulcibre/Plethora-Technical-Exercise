@@ -72,8 +72,29 @@
   }
 }</textarea><br/>
 	<button id="calcJSON" onclick="">Calculate Cost</button>
-	<div id="canvasContainer">
-	<canvas id="pointCanvas" width=900 height=900></canvas>
+	
+    <form class="dataOutputForm">
+        <div class = "outputs">
+            Rectangle dimensions:<br>
+            <input style="width: 190px" disabled type="text" id="rectDims">
+        </div>
+        <div class = "outputs">
+            Material Cost:<br>
+            <input style="width: 120px" disabled type="text" id="matCost">
+        </div>
+        <div class = "outputs">
+            Cutting Cost:<br>
+            <input style="width: 120px" disabled type="text" id="cutCost">
+        </div>
+        <div class = "outputs">
+            Total Cost:<br>
+            <input style="width: 120px" disabled type="text" id="totalCost">
+        </div>
+    </form>
+    
+    <div id="canvasContainer">
+        <canvas id="pointCanvas" width=900 height=900></canvas>
 	</div>
-</html>
+
 </body>
+</html>
