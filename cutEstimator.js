@@ -10,8 +10,11 @@ Plethora Technical Exercise
 	var MaximalLaserCutterSpeed = 0.5;	//	in/s
 	var MachineTimeCost = 0.07;		//	per second
 	
+    //  initialize window objects
 	var ce = window.cutEstimator = window.cutEstimator || {};
-	var inputField;
+	//var jh = window.JSONHelper = window.JSONHelper || {};
+    
+    var inputField;
 	var calcButton;
 	var pointCanvas;
 	var canvasContainer;
@@ -255,6 +258,7 @@ Plethora Technical Exercise
 		
 		var renderStates = [];
 		
+        //  try all possible rotations within 90 degrees, inclusive
 		for(var i = 0; i <= rotationsToTry; i++)
 		{
 			//	this is the fastest way to deep copy a JS object
