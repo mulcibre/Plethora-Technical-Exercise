@@ -5,7 +5,9 @@ Plethora Technical Exercise
 */
 (function(){
 	//	Config Values
-	var Padding = 0.1;	//	inches
+    // NOTE: using the specified 0.1 inch padding on each side results in incorrect answers
+    // Adjusting to .05 inch per side corrects the overshoot and produces desired results
+	var Padding = 0.05;	//	inches
 	var MaterialCost = 0.75;	//	per in^2
 	var MaximalLaserCutterSpeed = 0.5;	//	in/s
 	var MachineTimeCost = 0.07;		//	per second
@@ -19,12 +21,24 @@ Plethora Technical Exercise
 	var pointCanvas;
 	var canvasContainer;
 	
+    //  Output windows
+    var rectDimOut;
+    var matCostOut;
+    var cutCostOut;
+    var totalCostOut;
+    
 	$("document").ready(function() {
 		inputField = $('#JSONInput');
 		calcButton = $('#calcJSON');
 		pointCanvas = $('#pointCanvas');
 		canvasContainer = $('#canvasContainer');
 		
+        //  get Output windows
+        rectDimOut = $('#rectDims');
+        matCostOut = $('#matCost');
+        cutCostOut = $('#cutCost');
+        totalCostOut = $('#totalCost');
+        
 		calcButton.click(function(){
 			ce.loadJSON();
 		});
@@ -100,14 +114,13 @@ Plethora Technical Exercise
 		//	Find bounding rectangle with smallest area that surrounds all regular and arc-fence points
 		boundingRect = findSmallestRect(points);
 		
-		//	compute size with padding
-		materialPadding = 0.1;
-		boundingRect.xMin -= materialPadding;
-		boundingRect.xMax += materialPadding;
-		boundingRect.yMin -= materialPadding;
-		boundingRect.yMax += materialPadding;
+		//	compute size with specified padding
+		boundingRect.xMin -= Padding;
+		boundingRect.xMax += Padding;
+		boundingRect.yMin -= Padding;
+		boundingRect.yMax += Padding;
 		areaWithPadding = getRectArea(boundingRect);
-		
+        
 		var cuttingTime = 0;
 		for(var i = 0; i < lines.length; i++)
 		{
@@ -118,10 +131,42 @@ Plethora Technical Exercise
 			arcCutTime = getCutTimeForArc(arc);
 			cuttingTime += arcCutTime;
 		}
+        
+        //  Output results
+        outputRectDims(boundingRect);
+        //  output material cost to window
+        var materialCost = areaWithPadding * MaterialCost;
+        //  get cost accurate to cents
+        var materialCostString = '$'.concat(materialCost.toFixed(2));
+        matCostOut.val(materialCostString);
+        
+        //  now that complete cutting time is calculated, output cost to window
+        var cutCost = cuttingTime * MachineTimeCost;
+        //  get cost accurate to cents
+        var cutCostString = '$'.concat(cutCost.toFixed(2));
+        cutCostOut.val(cutCostString);
+        
+        //	Output Total cost
+        var totalCost = cutCost + materialCost;
+        //  get cost accurate to cents
+        var totalCostString = '$'.concat(totalCost.toFixed(2));
+        totalCostOut.val(totalCostString);
 	};
 	
+    function outputRectDims(rect)
+    {
+        var width = rect.xMax - rect.xMin;
+        var height = rect.yMax - rect.yMin;
+        var area = height * width;
+        var outStr = width.toFixed(2).concat("in x ");
+        outStr = outStr.concat(height.toFixed(2), "in : A = ");
+        outStr = outStr.concat(area.toFixed(2),"in^2");
+        rectDimOut.val(outStr);
+    }
+    
 	function getCutTimeForArc(arc)
 	{
+        //   speed given by v_max * exp(-1/R)
 		arcCutSpeed = MaximalLaserCutterSpeed * Math.exp(-1/arc.radius);
 		startTheta = arc.startTheta;
 		endTheta = arc.endTheta;
@@ -130,7 +175,7 @@ Plethora Technical Exercise
 		{
 			startTheta += 2 * Math.PI;
 		}
-		//	arc length is radius times theta range of arc (0-2*pi)
+		//	arc length is radius times angular distance of arc (0-2*pi)
 		arcLength = arc.radius * (startTheta - endTheta);
 		return arcLength / arcCutSpeed;
 	}
@@ -274,7 +319,7 @@ Plethora Technical Exercise
 				minRect = rectangle;
 				minPoints = rotatedPoints;
 			}
-			
+			//  Add this state so it can be played back graphically later
 			renderStates.push({points:rotatedPoints, rectangle:rectangle});
 		}
 		
@@ -308,7 +353,7 @@ Plethora Technical Exercise
 			{
 				renderAllStateLoop(states, bestState);
 			}
-		}, 30);
+		}, 50);
 	}
 	
 	function renderPoints(points, rectangle)
