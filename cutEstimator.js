@@ -155,12 +155,17 @@ Plethora Technical Exercise
 	
     function outputRectDims(rect)
     {
+        //  Calculate necessary dimensions
         var width = rect.xMax - rect.xMin;
         var height = rect.yMax - rect.yMin;
         var area = height * width;
+        
+        //  build output string
         var outStr = width.toFixed(2).concat("in x ");
         outStr = outStr.concat(height.toFixed(2), "in : A = ");
         outStr = outStr.concat(area.toFixed(2),"in^2");
+        
+        //  Write output string to appropriate HTML text field
         rectDimOut.val(outStr);
     }
     
@@ -207,13 +212,15 @@ Plethora Technical Exercise
 	
 	function addFencePointsForArc(arc, points){
 		//	each arc will have a fence point every 3.6 degrees
-		//	These fence points are the intersections of 100 evenly spaced tangent lines
-		//	The radius to any fence point is r / cos(1.8 degrees)
+		//	These fence points are the nearest intersections of 100 evenly spaced tangent lines
+		//	The radius to any fence point is r / cos(pi / 100)
 		//	r is the distance from the center point to the start point
 		
 		//	set fence radius to r / (2pi over 200)
 		var fenceRadius = arc.radius / Math.cos(Math.PI / 100)
 		
+        //  fence points will be distributed along the angular distance
+        //  between the start and end of the arc, inclusive
 		//	calculate angles from center to start and end points
 		var deltaX = arc.start.x - arc.center.x;
 		var deltaY = arc.start.y - arc.center.y;
@@ -241,6 +248,7 @@ Plethora Technical Exercise
 			fencePointX = arc.center.x - deltaX;
 			fencePointY = arc.center.y + deltaY;
 			
+            //  add fencepoint to list of points that will be used to determine the surface of the part
 			var fencePoint = {x:fencePointX,y:fencePointY,id:'fencePoint'};
 			points.push(fencePoint);
 			
@@ -363,10 +371,11 @@ Plethora Technical Exercise
 		var yMin = rectangle.yMin;
 		var yMax = rectangle.yMax;
 		
-		xMin -= (xMax - xMin) * 0.2;
-		xMax += (xMax - xMin) * 0.2;
-		yMin -= (yMax - yMin) * 0.2;
-		yMax += (yMax - yMin) * 0.2;
+        //  set padding of 10% of range for each side of plot
+		xMin -= (xMax - xMin) * 0.1;
+		xMax += (xMax - xMin) * 0.1;
+		yMin -= (yMax - yMin) * 0.1;
+		yMax += (yMax - yMin) * 0.1;
 		
 		var xRange = xMax - xMin;
 		var yRange = yMax - yMin;
@@ -383,9 +392,9 @@ Plethora Technical Exercise
 		//  We need to invert and scale coordinates to display them
 		//  in an HTML5 canvas (as with all rendered views)
 		
-		var xToYRatio = xRange/yRange;
-		var canvasXPixels = 900;
-		var canvasYPixels = 900/xToYRatio;
+        //  control size of canvas to maintain aspect ratio of part
+        var canvasXPixels = 200 * xRange;
+		var canvasYPixels = 200 * yRange;
 		setCanvasSize(canvasXPixels, canvasYPixels);
 		
 		var canvasXMax = pointCanvas.width();
@@ -407,6 +416,7 @@ Plethora Technical Exercise
 			translatedPoints.push({x:xCanvas,y:yCanvas});
 		}
 		
+        //  create scaled bounding rectangle (does not include the padding)
 		var scaledRect = {xMin: (rectangle.xMin - xMin)/xRange, 
 							xMax: (rectangle.xMax - xMin)/xRange, 
 							yMin: (rectangle.yMin - yMin)/yRange, 
@@ -423,6 +433,7 @@ Plethora Technical Exercise
 	
 	function setCanvasSize(width, height)
 	{
+        //  canvas size must be set in CSS, as well as property of object
 		canvasContainer.width(width);
 		canvasContainer.height(height);
 		pointCanvas[0].width = width;
@@ -434,6 +445,7 @@ Plethora Technical Exercise
 	function renderPointsOnCanvas(points) {
 		var context = pointCanvas[0].getContext('2d');
 		
+        //  size of points scales with size of canvas
 		var canvasHeight = pointCanvas.height();
 		var circleRadius = canvasHeight / 400;
 		
@@ -451,6 +463,7 @@ Plethora Technical Exercise
 	{
 		var context = pointCanvas[0].getContext('2d');
 		
+        //  Draw rectangle as sequence of line segments
 		context.beginPath();
 		context.strokeStyle = '#14fe14';
 		context.moveTo(rectangle.xMin,rectangle.yMin);

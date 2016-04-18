@@ -1,3 +1,40 @@
+User Guide
+===
+
+Please download this repository to a folder on your local machine
+
+run index.html in your preferred browser (the javascript has been tested in Chrome, Firefox, and Microsoft Edge). Note: Jquery must be downloaded, so an internet connection must be available.
+
+The text window will already contain the JSON for the file "ExtrudeCircularArc.json" as an example. The contents of any other JSON file following the template of "schema.json" can be pasted into the textbox and evaluated.
+
+When valid JSON is in the textfield, press the 'calculate cost' button to execute the estimator.
+
+The Estimator
+---
+
+The estimator first parses the JSON into data structures for accessing lines, arcs, and points. Dictionary lookups are available so that elements can be accessed by their ids as necessary.
+
+Next, fence points are established for each arc in the part, to ensure that the arcs are accomodated by the base stock. Fence points are the vertices of a polygon with a large number of edges, which forms a boundary for the arc. 
+
+To determine the optimal size of the stock, the array of end points and fence points are rotated through 90 degrees (This takes advantage of the symmetry of rectangles). For each rotation, the optimal bounding box is found. The area of this box is calculated, and if it is the lowest that has been encountered, it is saved, along with the rectangles dimensions. At the end, the area and dimensions of the optimal bounding box are returned. 
+
+The optimal bounding box has the appropriate padding added. To calculate the cost, the area of the box is multiplied by the cost per square inch of material. One note here, is that the optimal bounding box may have an inconveniently precise size for ordering stock, so a future feature may be to add a round-up step, after padding is added.
+
+Next, the program walks through each line segment and arc, and aggregates the total cut time. This is multiplied by the machine cost per second to get the cutting cost.
+
+These values are added together to get the total, then all results are output in the appropriate HTML fields. All output values are rounded to 2 decimal places.
+
+Lastly, there is an animated graphics that shows all the points, including fence points, and the optimal bounding box in green. The graphic shows the 90 degree rotation to determine the optimal bounding box, then switches to the optimal configuration.
+
+Convex Hulls and other improvements
+---
+
+One key disadvantage of this algorithm is that it naively includes superfluous points which do not belong to the bounding subset. This may create a performance problem for certain complex part geometries. One solution is to run a convex hull algorithm on the points set after the fence points have been added, which would reduce the number of points to the minimum spanning set which produces the polygon spanning all points. This would dramatically improve performance in cases where the part may have very complex inner geometries, with a relatively simple outer boundary.
+
+Why was a convex hull not used? The geometries of parts considered in this exercise, as well as most 2d parts in general, simply don't contain enough data to make the rotation step computationally stressful. For far more complex parts, and especially 3-dimensional parts, a convex hull step could dramatically limit the data space to only what is needed to generate the bounding shape.
+
+This algorithm adds fencepoints for all arcs, whether they are convex from the part, or concave. This is acceptable for parts with limited complexity, but in the worst case, where a part has many concave arcs, many unnecessary fencepoints will be generated. This is tolerable because fencepoint generation is very fast, but it is still wasteful. To ameliorate this issue, the part geometry could be walked in a clockwise direction beforehand, and only arcs whose 'ClockwiseFrom' point is encountered will have fencepoints generated. This would ensure that no concave arcs are added.
+
 Plethora Technical Exercise
 ===
 
