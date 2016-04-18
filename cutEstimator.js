@@ -2,6 +2,7 @@
 Samuel Gluss
 4-16-2016
 Plethora Technical Exercise
+Estimator for Laser Cut Parts
 */
 (function(){
 	//	Config Values

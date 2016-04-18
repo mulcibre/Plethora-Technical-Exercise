@@ -3,7 +3,7 @@ User Guide
 
 Please download this repository to a folder on your local machine for execution. The solution file is the JavaScript file called cutEstimator.js
 
-Run index.html in your preferred browser (the javascript has been tested in Chrome, Firefox, and Microsoft Edge). Note: Jquery must be downloaded, so an internet connection must be available.
+Run index.html in your preferred browser (the JavaScript has been tested in Chrome, Firefox, and Microsoft Edge). Note: Jquery must be downloaded, so an internet connection must be available.
 
 The text window will already contain the JSON for the file "ExtrudeCircularArc.json" as an example. The contents of any other JSON file following the template of "schema.json" can be pasted into the textbox and evaluated.
 
@@ -26,7 +26,7 @@ Next, the program walks through each line segment and arc, and aggregates the to
 
 These values are added together to get the total, then all results are output in the appropriate HTML fields. All output values are rounded to 2 decimal places.
 
-Lastly, there is an animated graphics that shows all the points, including fence points, and the optimal bounding box in green. The graphic shows the 90 degree rotation to determine the optimal bounding box, then switches to the optimal configuration.
+Lastly, there is an animated graphic that shows all the points, including fence points, and the optimal bounding box in green. The graphic shows the 90 degree rotation to determine the optimal bounding box, then switches to the optimal configuration.
 
 Convex Hulls and other improvements
 ---
@@ -35,7 +35,7 @@ One key disadvantage of this algorithm is that it naively includes superfluous p
 
 Why was a convex hull not used? The geometries of parts considered in this exercise, as well as most 2D parts in general, simply don't contain enough data to make the rotation step computationally stressful. For far more complex parts, and especially 3-dimensional parts, a convex hull step could dramatically limit the data space to only what is needed to generate the bounding shape. Furthermore, the best convex hull algorithms run in O(nlogn) due to the need of a sorted array of points. By comparison, the rotate and get limits algorithm runs in O(hn) where h is the number of rotations to test. As a result, a convex hull step would only help in certain extreme cases.
 
-For determining the boundaries of arcs, this algorithm adds fencepoints for all arcs, whether they protrude from the bounding subset of the initial points or not. This is reasonable for parts with limited complexity, but in the worst case, where a part has many concave arcs, many unnecessary fencepoints will be generated. This is tolerable because fencepoint generation and point rotation are very fast algorithms, but it is still wasteful. To ameliorate this issue, an optimal bounding box could be determined for the initial points. Then, any arc whose radius is greater than the distance between it's center and an edge of the box would be fenced. This would easily eliminate holes for mounting, intruments, or controls, which would be entirely contained by the rest of the part.
+For determining the boundaries of arcs, this algorithm adds fencepoints for all arcs, whether they protrude from the bounding subset of the initial points or not. This is reasonable for parts with limited complexity, but in the worst case, where a part has many concave arcs, many unnecessary fencepoints will be generated. This is tolerable because fencepoint generation and point rotation are very fast algorithms, but it is still wasteful. To ameliorate this issue, an optimal bounding box could be determined for the initial points. Then, any arc whose radius is greater than the distance between its center and an edge of the box would be fenced. This would easily eliminate holes for mounting, instruments, or controls, which would be entirely contained by the rest of the part.
 
 Plethora Technical Exercise
 ===
