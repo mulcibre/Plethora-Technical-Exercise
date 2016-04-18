@@ -9,6 +9,8 @@ The text window will already contain the JSON for the file "ExtrudeCircularArc.j
 
 When valid JSON is in the textfield, press the 'calculate cost' button to execute the estimator.
 
+Please contact me at sgluss@mail.sfsu.edu with any questions or comments
+
 The Estimator
 ---
 
@@ -29,11 +31,11 @@ Lastly, there is an animated graphics that shows all the points, including fence
 Convex Hulls and other improvements
 ---
 
-One key disadvantage of this algorithm is that it naively includes superfluous points which do not belong to the bounding subset. This may create a performance problem for certain complex part geometries. One solution is to run a convex hull algorithm on the points set after the fence points have been added, which would reduce the number of points to the minimum spanning set which produces the polygon spanning all points. This would dramatically improve performance in cases where the part may have very complex inner geometries, with a relatively simple outer boundary.
+One key disadvantage of this algorithm is that it naively includes superfluous points which do not belong to the bounding subset. This may create a performance problem for certain parts with complex internal geometries. One solution is to run a convex hull algorithm on the points set after the fence points have been added, which would reduce the number of points to the minimum spanning set which produces the polygon spanning all points. This would dramatically improve performance of the point rotation algorithm in cases where the part may have very complex inner geometries, with a relatively simple outer boundary.
 
-Why was a convex hull not used? The geometries of parts considered in this exercise, as well as most 2d parts in general, simply don't contain enough data to make the rotation step computationally stressful. For far more complex parts, and especially 3-dimensional parts, a convex hull step could dramatically limit the data space to only what is needed to generate the bounding shape.
+Why was a convex hull not used? The geometries of parts considered in this exercise, as well as most 2D parts in general, simply don't contain enough data to make the rotation step computationally stressful. For far more complex parts, and especially 3-dimensional parts, a convex hull step could dramatically limit the data space to only what is needed to generate the bounding shape. Furthermore, the best convex hull algorithms run in O(nlogn) due to the need of a sorted array of points. By comparison, the rotate and get limits algorithm runs in O(hn) where h is the number of rotations to test. As a result, a convex hull step would only help in certain extreme cases.
 
-This algorithm adds fencepoints for all arcs, whether they are convex from the part, or concave. This is acceptable for parts with limited complexity, but in the worst case, where a part has many concave arcs, many unnecessary fencepoints will be generated. This is tolerable because fencepoint generation is very fast, but it is still wasteful. To ameliorate this issue, the part geometry could be walked in a clockwise direction beforehand, and only arcs whose 'ClockwiseFrom' point is encountered will have fencepoints generated. This would ensure that no concave arcs are added.
+For determining the boundaries of arcs, this algorithm adds fencepoints for all arcs, whether they protrude from the bounding subset of the initial points or not. This is reasonable for parts with limited complexity, but in the worst case, where a part has many concave arcs, many unnecessary fencepoints will be generated. This is tolerable because fencepoint generation and point rotation are very fast algorithms, but it is still wasteful. To ameliorate this issue, an optimal bounding box could be determined for the initial points. Then, any arc whose radius is greater than the distance between it's center and an edge of the box would be fenced. This would easily eliminate holes for mounting, intruments, or controls, which would be entirely contained by the rest of the part.
 
 Plethora Technical Exercise
 ===
