@@ -1,9 +1,9 @@
 User Guide
 ===
 
-Please download this repository to a folder on your local machine
+Please download this repository to a folder on your local machine for execution. The solution file is the JavaScript file called cutEstimator.js
 
-run index.html in your preferred browser (the javascript has been tested in Chrome, Firefox, and Microsoft Edge). Note: Jquery must be downloaded, so an internet connection must be available.
+Run index.html in your preferred browser (the javascript has been tested in Chrome, Firefox, and Microsoft Edge). Note: Jquery must be downloaded, so an internet connection must be available.
 
 The text window will already contain the JSON for the file "ExtrudeCircularArc.json" as an example. The contents of any other JSON file following the template of "schema.json" can be pasted into the textbox and evaluated.
 
@@ -14,11 +14,11 @@ The Estimator
 
 The estimator first parses the JSON into data structures for accessing lines, arcs, and points. Dictionary lookups are available so that elements can be accessed by their ids as necessary.
 
-Next, fence points are established for each arc in the part, to ensure that the arcs are accomodated by the base stock. Fence points are the vertices of a polygon with a large number of edges, which forms a boundary for the arc. 
+Next, fence points are added for each arc in the part, to ensure that the arcs are properly accomodated by the base stock. Fence points are the vertices of regular polygons with large numbers of edges, which form an outer boundary for each arc. 
 
-To determine the optimal size of the stock, the array of end points and fence points are rotated through 90 degrees (This takes advantage of the symmetry of rectangles). For each rotation, the optimal bounding box is found. The area of this box is calculated, and if it is the lowest that has been encountered, it is saved, along with the rectangles dimensions. At the end, the area and dimensions of the optimal bounding box are returned. 
+To determine the optimal size of the stock, the array of end points and fence points are rotated through 90 degrees to take advantage of rectangular symmetry. For each rotation, the optimal bounding box is found. The area of this box is calculated, and if it is the smallest that has been encountered, it is saved, along with the rectangle dimensions. At the end, the area and dimensions of the optimal bounding box are returned. Then, the appropriate padding is added to account for manufacturing tolerance and kerf thickness.
 
-The optimal bounding box has the appropriate padding added. To calculate the cost, the area of the box is multiplied by the cost per square inch of material. One note here, is that the optimal bounding box may have an inconveniently precise size for ordering stock, so a future feature may be to add a round-up step, after padding is added.
+To calculate the cost, the area of the box is multiplied by the cost per square inch of material. Since the dimensions of the optimal bounding box may not be a readily available size for ordering stock, a future feature may be to add a round-up step - after padding is added.
 
 Next, the program walks through each line segment and arc, and aggregates the total cut time. This is multiplied by the machine cost per second to get the cutting cost.
 
